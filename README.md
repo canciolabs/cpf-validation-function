@@ -4,7 +4,7 @@ This tiny package contains a function to validate a CPF (individual taxpayer ide
 
 ## Requirements
 
-PHP 7.4 or greater is required.
+PHP 8.5 or greater is required.
 
 ## Installation
 
