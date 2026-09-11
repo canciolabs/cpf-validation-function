@@ -52,4 +52,4 @@ assert_cpf('17031733000')
 
 ## Running Tests
 
-- From the project root, run: `vendor/bin/phpunit .`
+- From the project root, run: `vendor/bin/phpunit tests`
