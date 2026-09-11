@@ -24,10 +24,8 @@ if (!function_exists(__NAMESPACE__ . '\\assert_cpf')) {
         $cpf = preg_replace("/\D/", "", $cpf);
 
         // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
-        for ($i = 0; $i <= 9; $i++) {
-            if ($cpf === str_repeat((string) $i, 11)) {
-                throw new InvalidArgumentException('The CPF is invalid.');
-            }
+        if (preg_match('/^(\d)\1{10}$/', $cpf) === 1) {
+            throw new InvalidArgumentException('The CPF is invalid.');
         }
 
         // Calculate digits
