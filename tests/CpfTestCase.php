@@ -23,6 +23,8 @@ abstract class CpfTestCase extends TestCase
         $testCases[] = ['182.488.530.04'];
         $testCases[] = ['182-488-530-04'];
         $testCases[] = ['182 488 530 04'];
+        $testCases[] = ['foo17031733090'];
+        $testCases[] = ['170.317.330-90foo'];
 
         // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
         $testCases[] = ['00000000000'];
