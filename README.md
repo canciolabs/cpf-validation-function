@@ -1,6 +1,6 @@
-# CPF Validation Function
+# CPF Validation Functions
 
-This tiny package contains a function to validate a CPF (individual taxpayer identification number in Brazil).
+This tiny package contains a few functions to validate a CPF (individual taxpayer identification number in Brazil).
 
 ## Requirements
 
@@ -44,10 +44,11 @@ use function CancioLabs\Functions\Cpf\assert_cpf;
 assert_cpf('170.317.330-90');
 assert_cpf('17031733090');
 
-// These 3 examples throw InvalidArgumentException
-assert_cpf('')
-assert_cpf('foo')
-assert_cpf('17031733000')
+// These 4 examples throw InvalidArgumentException
+assert_cpf(null);
+assert_cpf('');
+assert_cpf('foo');
+assert_cpf('17031733000');
 ```
 
 ## Running Tests
