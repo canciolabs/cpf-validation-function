@@ -17,7 +17,7 @@ PHP 7.4 or greater is required.
 
 ## How to use it
 
-### is_valid_cpf(string $cpf): bool
+### is_valid_cpf(?string $cpf): bool
 
 Returns true if the CPF is valid, false otherwise.
 
@@ -33,7 +33,7 @@ is_valid_cpf('17031733090') // returns true
 is_valid_cpf('17031733000') // returns false
 ```
 
-### assert_cpf(string $cpf): void
+### assert_cpf(?string $cpf): void
 
 Validates the CPF and throw an InvalidArgumentException if the CPF is not valid.
 
