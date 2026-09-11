@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CancioLabs\Functions\Cpf;
 
 use InvalidArgumentException;
@@ -18,7 +20,7 @@ function assert_cpf(?string $cpf): void {
 
     // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
     for ($i = 0; $i <= 9; $i++) {
-        if ($cpf === str_repeat($i, 11)) {
+        if ($cpf === str_repeat((string) $i, 11)) {
             throw new InvalidArgumentException('The CPF is invalid.');
         }
     }

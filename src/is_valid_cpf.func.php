@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CancioLabs\Functions\Cpf;
 
 use InvalidArgumentException;
