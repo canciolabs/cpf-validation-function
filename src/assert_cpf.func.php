@@ -14,7 +14,7 @@ function assert_cpf(?string $cpf): void {
     }
 
     // Remove non-numeric chars
-    $cpf = (string) preg_replace("/\D/", "", $cpf);
+    $cpf = preg_replace("/\D/", "", $cpf);
 
     // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
     for ($i = 0; $i <= 9; $i++) {
