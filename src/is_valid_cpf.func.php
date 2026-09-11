@@ -4,7 +4,7 @@ namespace CancioLabs\Functions\Cpf;
 
 use InvalidArgumentException;
 
-function is_valid_cpf($cpf): bool {
+function is_valid_cpf(?string $cpf): bool {
     try {
         assert_cpf($cpf);
         return true;

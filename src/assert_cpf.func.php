@@ -4,7 +4,7 @@ namespace CancioLabs\Functions\Cpf;
 
 use InvalidArgumentException;
 
-function assert_cpf(string $cpf): void {
+function assert_cpf(?string $cpf): void {
     if (empty($cpf)) {
         throw new InvalidArgumentException('The CPF must not be an empty string.');
     }
