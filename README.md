@@ -1,10 +1,10 @@
-# CPF functions
+# CPF Validation Function
 
-This tiny package contains some functions to validate a CPF (Brazilian ID)
+This tiny package contains a function to validate a CPF (individual taxpayer identification number in Brazil).
 
 ## Requirements
 
-PHP 7.4 or greater is required, nothing else.
+PHP 7.4 or greater is required.
 
 ## Installation
 
