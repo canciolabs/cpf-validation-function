@@ -25,12 +25,12 @@ Returns true if the CPF is valid, false otherwise.
 use function CancioLabs\Functions\Cpf\is_valid_cpf;
 
 // Passing formatted CPFs
-is_valid_cpf('170.317.330-90') // returns true
-is_valid_cpf('170.317.330-00') // returns false
+is_valid_cpf('170.317.330-90'); // returns true
+is_valid_cpf('170.317.330-00'); // returns false
 
 // Passing raw CPFs
-is_valid_cpf('17031733090') // returns true
-is_valid_cpf('17031733000') // returns false
+is_valid_cpf('17031733090'); // returns true
+is_valid_cpf('17031733000'); // returns false
 ```
 
 ### assert_cpf(?string $cpf): void
