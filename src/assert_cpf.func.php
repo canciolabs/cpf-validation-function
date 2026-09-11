@@ -15,7 +15,7 @@ function assert_cpf(?string $cpf): void {
         throw new InvalidArgumentException('The CPF must not be an empty string.');
     }
 
-    if (!preg_match('/^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/', $cpf)) {
+    if (!preg_match('/^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})\z/', $cpf)) {
         throw new InvalidArgumentException('The CPF must match either "999.999.999-99" or "99999999999" pattern.');
     }
 
