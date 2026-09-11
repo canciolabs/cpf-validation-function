@@ -1,10 +1,10 @@
-# CPF functions
+# CPF Validation Function
 
-This tiny package contains some functions to validate a CPF (Brazilian ID)
+This tiny package contains a function to validate a CPF (individual taxpayer identification number in Brazil).
 
 ## Requirements
 
-PHP 7.4 or greater is required, nothing else.
+PHP 8.5 or greater is required.
 
 ## Installation
 
@@ -17,7 +17,7 @@ PHP 7.4 or greater is required, nothing else.
 
 ## How to use it
 
-### is_valid_cpf(string $cpf): bool
+### is_valid_cpf(?string $cpf): bool
 
 Returns true if the CPF is valid, false otherwise.
 
@@ -33,7 +33,7 @@ is_valid_cpf('17031733090') // returns true
 is_valid_cpf('17031733000') // returns false
 ```
 
-### assert_cpf(string $cpf): void
+### assert_cpf(?string $cpf): void
 
 Validates the CPF and throw an InvalidArgumentException if the CPF is not valid.
 
@@ -52,4 +52,4 @@ assert_cpf('17031733000')
 
 ## Running Tests
 
-- From the project root, run: `vendor/bin/phpunit .`
+- From the project root, run: `vendor/bin/phpunit tests`

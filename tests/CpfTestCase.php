@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CancioLabs\Functions\Cpf\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,8 @@ abstract class CpfTestCase extends TestCase
     {
         $testCases = [];
 
-        // stringNotEmpty
+        // notEmpty
+        $testCases[] = [null];
         $testCases[] = [''];
 
         // regex
@@ -20,6 +23,8 @@ abstract class CpfTestCase extends TestCase
         $testCases[] = ['182.488.530.04'];
         $testCases[] = ['182-488-530-04'];
         $testCases[] = ['182 488 530 04'];
+        $testCases[] = ['foo17031733090'];
+        $testCases[] = ['170.317.330-90foo'];
 
         // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
         $testCases[] = ['00000000000'];
@@ -46,7 +51,8 @@ abstract class CpfTestCase extends TestCase
         // invalid digits
         // "000.269.140-00" is a valid.
         for ($i = 1; $i <= 99; $i++) {
-            $testCases[] = ['000.269.140-' . substr('00' . $i, -2)];
+            $iAsStr = (string) $i;
+            $testCases[] = ['000.269.140-' . substr('00' . $iAsStr, -2)];
         }
 
         return $testCases;

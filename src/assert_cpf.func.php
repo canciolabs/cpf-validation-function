@@ -1,24 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CancioLabs\Functions\Cpf;
 
 use InvalidArgumentException;
 
-function assert_cpf(string $cpf): void {
-    if (empty($cpf)) {
+function assert_cpf(?string $cpf): void {
+    if ($cpf === null) {
+        throw new InvalidArgumentException('The CPF must not be null.');
+    }
+
+    if ($cpf === '') {
         throw new InvalidArgumentException('The CPF must not be an empty string.');
     }
 
-    if (!preg_match('/^(\d{3}\.\d{3}\.\d{3}\-\d{2})|(\d{11})$/', $cpf)) {
+    if (!preg_match('/^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/', $cpf)) {
         throw new InvalidArgumentException('The CPF must match either "999.999.999-99" or "99999999999" pattern.');
     }
 
     // Remove non-numeric chars
-    $cpf = (string) preg_replace("/\D/", "", $cpf);
+    $cpf = preg_replace("/\D/", "", $cpf);
 
     // 000.000.000-00, 111.111.111-11, ..., 999.999.999-99 are invalids
     for ($i = 0; $i <= 9; $i++) {
-        if ($cpf === str_repeat($i, 11)) {
+        if ($cpf === str_repeat((string) $i, 11)) {
             throw new InvalidArgumentException('The CPF is invalid.');
         }
     }
