@@ -10,7 +10,7 @@ function is_valid_cpf(?string $cpf): bool {
     try {
         assert_cpf($cpf);
         return true;
-    } catch (InvalidArgumentException $e) {
+    } catch (InvalidArgumentException) {
         return false;
     }
 }
