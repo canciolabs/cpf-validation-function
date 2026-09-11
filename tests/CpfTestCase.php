@@ -21,7 +21,7 @@ abstract class CpfTestCase extends TestCase
         $testCases[] = [' '];
         $testCases[] = ['abcdefghijk'];
         $testCases[] = ['182.488.530.04'];
-        $testCases[] = ["182.488.530.04\n"];
+        $testCases[] = ["182.488.530-04\n"];
         $testCases[] = ['182-488-530-04'];
         $testCases[] = ['182 488 530 04'];
         $testCases[] = ['foo17031733090'];
