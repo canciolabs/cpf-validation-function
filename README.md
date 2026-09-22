@@ -1,56 +1,92 @@
 # CPF Validation Functions
 
-This tiny package contains a few functions to validate a CPF (individual taxpayer identification number in Brazil).
+[![PHP 8.5+](https://img.shields.io/badge/PHP-8.5%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](LICENSE)
+
+Small, dependency-free PHP functions for validating Brazilian CPF (Cadastro de Pessoas Fisicas) numbers. Use a boolean check when invalid input is expected, or an assertion when invalid input should stop execution.
 
 ## Requirements
 
-PHP 8.5 or greater is required.
+- PHP 8.5 or later
 
 ## Installation
 
-    composer require cancio-labs/cpf-validation-function
+Install the package with Composer:
 
-## Functions
-
-1. is_valid_cpf 
-2. assert_cpf
-
-## How to use it
-
-### is_valid_cpf(?string $cpf): bool
-
-Returns true if the CPF is valid, false otherwise.
-
+```bash
+composer require cancio-labs/cpf-validation-function
 ```
+
+Composer autoloads both functions automatically.
+
+## Usage
+
+The validator accepts CPF values in either of these exact formats:
+
+- Raw: `99999999999`
+- Formatted: `999.999.999-99`
+
+It rejects malformed input, repeated-digit CPFs such as `000.000.000-00`, and values whose check digits do not match.
+
+### `is_valid_cpf`
+
+Use `is_valid_cpf(?string $cpf): bool` when you need to test a value without handling an exception.
+
+```php
+<?php
+
 use function CancioLabs\Functions\Cpf\is_valid_cpf;
 
-// Passing formatted CPFs
-is_valid_cpf('170.317.330-90'); // returns true
-is_valid_cpf('170.317.330-00'); // returns false
+is_valid_cpf('94537020059');     // true
+is_valid_cpf('945.370.200-59');  // true
 
-// Passing raw CPFs
-is_valid_cpf('17031733090'); // returns true
-is_valid_cpf('17031733000'); // returns false
+is_valid_cpf('94537020000');     // false: invalid check digits
+is_valid_cpf('000.000.000-00');  // false: repeated digits
+is_valid_cpf(null);              // false
 ```
 
-### assert_cpf(?string $cpf): void
+### `assert_cpf`
 
-Validates the CPF and throw an InvalidArgumentException if the CPF is not valid.
+Use `assert_cpf(?string $cpf): void` to enforce a valid CPF. It throws `InvalidArgumentException` when the value is invalid.
 
-```
+```php
+<?php
+
 use function CancioLabs\Functions\Cpf\assert_cpf;
 
-// These 2 example will execute normally
-assert_cpf('170.317.330-90');
-assert_cpf('17031733090');
+assert_cpf('033.039.290-50'); // Continues normally.
 
-// These 4 examples throw InvalidArgumentException
-assert_cpf(null);
-assert_cpf('');
-assert_cpf('foo');
-assert_cpf('17031733000');
+try {
+    assert_cpf('03303929000');
+} catch (InvalidArgumentException $exception) {
+    // Handle an invalid CPF.
+}
 ```
 
-## Running Tests
+## Validation behavior
 
-- From the project root, run: `vendor/bin/phpunit tests`
+| Input            | Result                          |
+|------------------|---------------------------------|
+| `94537020059`    | Valid                           |
+| `945.370.200-59` | Valid                           |
+| `945 370 200 59` | Invalid: unsupported format     |
+| `945.370.200-00` | Invalid: incorrect check digits |
+| `11111111111`    | Invalid: repeated digits        |
+| `null` or `''`   | Invalid                         |
+
+## Development
+
+Install development dependencies and run the test suite:
+
+```bash
+composer install
+vendor/bin/phpunit tests
+```
+
+## Contributing
+
+Contributions are welcome. Please include tests for behavior changes and keep the public API backward compatible where possible.
+
+## License
+
+This project is licensed under the [GNU General Public License v3.0 or later](LICENSE).
